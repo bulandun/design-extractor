@@ -18,17 +18,27 @@ export default function App() {
     setError("");
 
     try {
-      const res = await fetch("/.netlify/functions/extract", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ html }),
-      });
+      const endpoints = ["/api/extract", "/.netlify/functions/extract"];
+      let response;
 
-      if (!res.ok) {
-        throw new Error(`Request failed: ${res.status}`);
+      for (const endpoint of endpoints) {
+        const candidate = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ html }),
+        });
+
+        if (candidate.ok || candidate.status !== 404) {
+          response = candidate;
+          break;
+        }
       }
 
-      setTokens(await res.json());
+      if (!response?.ok) {
+        throw new Error(`Request failed: ${response?.status ?? "unknown"}`);
+      }
+
+      setTokens(await response.json());
     } catch (err) {
       setError(err instanceof Error ? err.message : "Unknown error");
     } finally {
