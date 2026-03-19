@@ -14,6 +14,7 @@ export default function App() {
     () => tokens.colors.length > 0 || tokens.fonts.length > 0,
     [tokens],
   );
+  const jsonResults = useMemo(() => JSON.stringify(tokens, null, 2), [tokens]);
 
   const handlePdfUpload = async (event) => {
     const file = event.target.files?.[0];
@@ -113,22 +114,7 @@ export default function App() {
       {hasResults && (
         <section className="results">
           <h2>Results</h2>
-          <div>
-            <h3>Colors</h3>
-            <ul>
-              {tokens.colors.map((color) => (
-                <li key={color}>{color}</li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <h3>Fonts</h3>
-            <ul>
-              {tokens.fonts.map((font) => (
-                <li key={font}>{font}</li>
-              ))}
-            </ul>
-          </div>
+          <pre aria-label="Extracted JSON">{jsonResults}</pre>
         </section>
       )}
     </main>
