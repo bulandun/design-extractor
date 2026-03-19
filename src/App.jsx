@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 const SAMPLE = `<div style="font-family: Inter, Arial; color: #0f172a; background: rgb(226, 232, 240)">Design System</div>`;
 
