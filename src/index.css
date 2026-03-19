@@ -22,6 +22,27 @@ h1 {
   margin-bottom: 0.25rem;
 }
 
+.upload-area {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.9rem;
+  border: 1px dashed #93c5fd;
+  border-radius: 10px;
+  background: #eff6ff;
+}
+
+.upload-area h2 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.status {
+  margin: 0.5rem 0 0;
+  color: #1e3a8a;
+  font-size: 0.95rem;
+}
+
 textarea {
   width: 100%;
   margin-top: 1rem;
