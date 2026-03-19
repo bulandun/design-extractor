@@ -33,7 +33,8 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { html = "" } = req.body || {};
+    const payload = typeof req.body === "string" ? JSON.parse(req.body || "{}") : req.body || {};
+    const { html = "" } = payload;
     const tokens = parseDesignTokens(html);
 
     return res.status(200).json(tokens);
